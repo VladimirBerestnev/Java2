@@ -6,15 +6,12 @@ public class Massive {
 
     public static void main(String[] args) {
 //задание 1
-        int [] invertmassive = {1,0,1,0,1,1,1,0,0,0,1,0,1};
+        int[] invertmassive = {1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1};
 
-        for (int i = 0; i < invertmassive.length; i++)
-        {
-            if (invertmassive[i] == 1)
-            {
+        for (int i = 0; i < invertmassive.length; i++) {
+            if (invertmassive[i] == 1) {
                 invertmassive[i] = 0;
-            } else
-            {
+            } else {
                 invertmassive[i] = 1;
             }
 
@@ -25,9 +22,7 @@ public class Massive {
 
         int[] arreight = new int[8];
 
-        for (int i = 0; i < arreight.length-1; i++)
-
-        {
+        for (int i = 0; i < arreight.length - 1; i++) {
             arreight[i] = i * 3;
 
         }
@@ -35,49 +30,41 @@ public class Massive {
 
 //задание 3
 
-        int[] lesssix = {1,5,3,2,11,4,5,2,4,8,9,1};
+        int[] lesssix = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
 
-        for (int i = 0; i < lesssix.length-1; i++)
-        {
-            if (lesssix[i] < 6)
-            {
-             lesssix[i] = lesssix[i] * 2;
+        for (int i = 0; i < lesssix.length - 1; i++) {
+            if (lesssix[i] < 6) {
+                lesssix[i] = lesssix[i] * 2;
             }
         }
         System.out.println(Arrays.toString(lesssix));
 
 // задание 4
 
-        int [][] doublemass = new int[5][5];
+        int[][] doublemass = new int[5][5];
 
-        for (int i = 0; i < doublemass.length-1; i++)
-        {
-            for (int j = 0; j < doublemass[i].length-1; j++)
-            {
-                if (i == j)
-                {
+        for (int i = 0; i < doublemass.length - 1; i++) {
+            for (int j = 0; j < doublemass[i].length - 1; j++) {
+                if (i == j) {
                     doublemass[i][j] = 1;
                     System.out.println(i + " и " + j);
                 }
             }
-         int j = (doublemass.length - 1) - i;
+            int j = (doublemass.length - 1) - i;
             doublemass[i][j] = 1;
             System.out.println(i + " и " + j);
         }
 
 // задание 5
 
-        int[] minimax = {7,35,67,23,43,3,9,1,35,63,55,28};
+        int[] minimax = {7, 35, 67, 23, 43, 3, 9, 1, 35, 63, 55, 28};
         int maxsign = minimax[0];
         int minsign = minimax[0];
-        for (int i = 0; i < minimax.length-1; i++)
-        {
-            if (maxsign < minimax[i])
-            {
-               maxsign = minimax[i];
+        for (int i = 0; i < minimax.length - 1; i++) {
+            if (maxsign < minimax[i]) {
+                maxsign = minimax[i];
 
-            } else if (minsign > minimax[i])
-            {
+            } else if (minsign > minimax[i]) {
                 minsign = minimax[i];
             }
         }
@@ -85,30 +72,25 @@ public class Massive {
         System.out.println(minsign);
 
 
-       int [] masleftright = {1,2,3,4,5,10,5};
-    boolean sum = sumOfleftAndRightPart(masleftright);
-    System.out.println(sum);
+        int[] masleftright = {1, 2, 3, 4, 5, 10, 5};
+        boolean sum = sumOfleftAndRightPart(masleftright);
+        System.out.println(sum);
 
-        int[] lastmassive = {3,6,3,7,5,3,5,7,7,8,3,0,0,0,0,0,0,0,0,0,0,0,0};
-        removeMassiveNPosition(lastmassive, 3);
-
+        int[] lastmassive = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int [] lastmassive1 = removeMassiveNPosition(lastmassive, 3);
+        System.out.println(Arrays.toString(lastmassive1));
 // задание 6
-
 
 
     }
 
-    static boolean sumOfleftAndRightPart(int[] masleftright)
-    {
+    static boolean sumOfleftAndRightPart(int[] masleftright) {
         int sumleft = 0;
         int sumright = 0;
         boolean sum = false;
-        for (int i = 0; i < masleftright.length-1; i++)
-
-        {
+        for (int i = 0; i < masleftright.length - 1; i++) {
             sumleft = sumleft + masleftright[i];
-            for (int j = masleftright.length-1; j == (i); j--)
-            {
+            for (int j = masleftright.length - 1; j > i; j--) {
                 sumright = sumright + masleftright[j];
             }
 
@@ -118,16 +100,35 @@ public class Massive {
             }
 
         }
-    return sum;
+        return sum;
     }
 
 // задание 7
 
-    static void removeMassiveNPosition(int[] lastmassive, int n)
-    {
+     static int[] removeMassiveNPosition(int[] lastmassive, int n) {
+        if (n > 0) {
+            for (int i = 0; 1 < n; i++) {
+                int finishArg = lastmassive[lastmassive.length - 1];
+                for (int j = lastmassive.length - 1; j > 0; j--) {
+                    lastmassive[j] = lastmassive[j - 1];
+                }
+                lastmassive[0] = finishArg;
 
+            }
 
+        } else if (n < 0) {
+            for (int i = 0; i > n; i--) {
+                int startArg = lastmassive[0];
+                for (int j = 0; j < lastmassive.length - 1; j++) {
+                    lastmassive[j] = lastmassive[j + 1];
+                }
+
+                lastmassive[lastmassive.length - 1] = startArg;
+
+            }
+
+        }
+        return lastmassive;
 
     }
-
 }
