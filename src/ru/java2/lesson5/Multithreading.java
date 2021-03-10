@@ -35,11 +35,11 @@ public class Multithreading {
     }
 
 
-    private static void secondMethod(float[] arr) {
+    private static void secondMethod(float[] arr){
 
         float[] arr1 = new float[size];
         float[] arr2 = new float[size];
-        long a = System.currentTimeMillis();
+
         System.arraycopy(arr, 0, arr1, 0, h);
         System.arraycopy(arr, h, arr2, 0, h);
 
@@ -62,11 +62,24 @@ public class Multithreading {
             }
         });
 
+        long c = System.currentTimeMillis();
+        t1.start();
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+
         System.arraycopy(arr1, 0, arr, 0, h);
         System.arraycopy(arr2, 0, arr, h, h);
 
-        long b = System.currentTimeMillis();
-        System.out.println((float)(b-a)/1000 + " секунд");
+        long d = System.currentTimeMillis();
+        System.out.println((float)(d-c)/1000 + " секунд");
         System.out.println(arr[size-2]);
   //      System.out.println("Massive2 " + Arrays.toString(arr));
 
